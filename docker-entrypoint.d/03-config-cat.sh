@@ -18,19 +18,46 @@ Job {
   FileSet = CatalogFileSet
   Pool = CatalogPool
   Schedule = WeeklyCycleAfterBackup
-  RunBeforeJob = \"/etc/init.d/bacula-fd start\"
-  RunAfterFailedJob = \"/etc/init.d/bacula-fd stop\"
-  #RunScript {
-  #  Console = \"purge volume action=all allpools storage=File\"
-  #  RunsOnClient = no
-  #  RunsWhen = After
-  #}
+  RunScript {
+    Command = \"/etc/init.d/bacula-fd start\"
+    FailJobOnError = yes
+    RunsOnClient = no
+    RunsWhen = Before
+  }
+  RunScript {
+    Command = \"/etc/init.d/bacula-fd stop\"
+    FailJobOnError = no
+    RunsOnSuccess = yes
+    RunsOnFailure = yes
+    RunsOnClient = no
+    RunsWhen = After
+  }
+  RunScript {
+    Console = \"purge volume action=all allpools\"
+    FailJobOnError = no
+    RunsOnSuccess = yes
+    RunsOnFailure = no
+    RunsOnClient = no
+    RunsWhen = After
+  }
   # This creates an ASCII copy of the catalog
   # Arguments to make_catalog_backup.pl are:
   #  make_catalog_backup.pl <catalog-name>
-  RunBeforeJob = \"/etc/bacula/scripts/make_catalog_backup.pl Catalog\"
+  RunScript {
+    Command = \"/etc/bacula/scripts/make_catalog_backup.pl Catalog\"
+    FailJobOnError = yes
+    RunsOnClient = no
+    RunsWhen = Before
+  }
   # This deletes the copy of the catalog
-  RunAfterFailedJob = \"/etc/bacula/scripts/delete_catalog_backup\"
+  RunScript {
+    Command = \"/etc/bacula/scripts/delete_catalog_backup\"
+    FailJobOnError = no
+    RunsOnSuccess = yes
+    RunsOnFailure = yes
+    RunsOnClient = no
+    RunsWhen = After
+  }
   Priority = 99 # run after other backups
 }
 
