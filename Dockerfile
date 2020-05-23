@@ -24,6 +24,7 @@ EXPOSE 9101
 
 VOLUME /run/bacula
 VOLUME /var/lib/bacula
+VOLUME /etc/bacula/clientdefs
 
 ADD docker-entrypoint.d/ /run/docker-entrypoint.d/
 ENV DOCKER_ENV_HIDEVARS BACULA_CATALOG_DATABASE_PASS BACULA_CONSOLE_PASS BACULA_STORAGE_PASS
