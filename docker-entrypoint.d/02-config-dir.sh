@@ -37,6 +37,11 @@ Client {
 Messages {
   Name = Standard
 
+  mailcommand = \"/usr/sbin/bsmtp -8 -h ${BACULA_MESSAGES_HOST:-bsmtp} -f '(Bacula) <%r>' -s 'Bacula: %t %e of %c %l' %r\"
+  operatorcommand = \"/usr/sbin/bsmtp -8 -h ${BACULA_MESSAGES_HOST:-bsmtp} -f '(Bacula) <%r>' -s 'Bacula: Intervention needed for %j' %r\"
+  mail on error = ${BACULA_MESSAGES_USER:-root@localhost} = all, !skipped
+  operator = ${BACULA_MESSAGES_USER:-root@localhost} = mount
+
   stdout = all, !skipped, !saved
   console = all, !skipped, !saved
   catalog = all
