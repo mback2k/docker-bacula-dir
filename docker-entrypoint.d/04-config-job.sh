@@ -14,6 +14,19 @@ JobDefs {
   Priority = 10
 }
 
+Job {
+  Name = FileRestore
+  Type = Restore
+  Client = bacula-dir-fd
+# The FileSet and Pool directives are not used by Restore Jobs
+# but must not be removed
+  FileSet = CatalogFileSet
+  Pool = CatalogPool
+  Storage = bacula-sd
+  Messages = Standard
+  Where = /tmp/bacula-restores
+}
+
 Pool {
   Name = FilePool
   Pool Type = Backup
