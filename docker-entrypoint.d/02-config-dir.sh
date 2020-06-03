@@ -4,7 +4,7 @@ echo "
 Director {
   Name = bacula-dir
   @/etc/bacula/bconsole-password
-  Messages = Standard
+  Messages = Daemon
   WorkingDirectory = \"/var/lib/bacula\"
   PidDirectory = \"/run/bacula\"
   QueryFile = \"/etc/bacula/scripts/query.sql\"
@@ -42,9 +42,20 @@ Messages {
   mail on error = ${BACULA_MESSAGES_USER:-root@localhost} = all, !skipped
   operator = ${BACULA_MESSAGES_USER:-root@localhost} = mount
 
-  stdout = all, !skipped, !saved
   console = all, !skipped, !saved
+  stdout = all, !skipped
+
   catalog = all
+}
+
+Messages {
+  Name = Daemon
+
+  mailcommand = \"/usr/sbin/bsmtp -8 -h ${BACULA_MESSAGES_HOST:-bsmtp} -f '(Bacula) <%r>' -s 'Bacula daemon message' %r\"
+  mail = ${BACULA_MESSAGES_USER:-root@localhost} = all, !skipped
+
+  console = all, !skipped, !saved
+  stdout = all, !skipped
 }
 " > /etc/bacula/bacula-dir.conf
 
