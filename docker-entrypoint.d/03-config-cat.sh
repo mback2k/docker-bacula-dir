@@ -16,6 +16,7 @@ Job {
   Write Bootstrap = \"/var/lib/bacula/%n.bsr\"
   Client = bacula-dir-fd
   FileSet = CatalogFileSet
+  Messages = Standard
   Pool = CatalogPool
   Schedule = WeeklyCycleAfterBackup
   RunScript {
