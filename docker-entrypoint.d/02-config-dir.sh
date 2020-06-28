@@ -39,7 +39,7 @@ Messages {
 
   mailcommand = \"/usr/sbin/bsmtp -8 -h ${BACULA_MESSAGES_HOST:-bsmtp} -f '(Bacula) <%r>' -s 'Bacula: %t %e of %c %l' %r\"
   operatorcommand = \"/usr/sbin/bsmtp -8 -h ${BACULA_MESSAGES_HOST:-bsmtp} -f '(Bacula) <%r>' -s 'Bacula: Intervention needed for %j' %r\"
-  mail on error = ${BACULA_MESSAGES_USER:-root@localhost} = all, !skipped
+  mail on error = ${BACULA_MESSAGES_USER:-root@localhost} = all, !skipped, !info
   operator = ${BACULA_MESSAGES_USER:-root@localhost} = mount
 
   console = all, !skipped, !saved
@@ -52,7 +52,7 @@ Messages {
   Name = Daemon
 
   mailcommand = \"/usr/sbin/bsmtp -8 -h ${BACULA_MESSAGES_HOST:-bsmtp} -f '(Bacula) <%r>' -s 'Bacula daemon message' %r\"
-  mail = ${BACULA_MESSAGES_USER:-root@localhost} = all, !skipped
+  mail = ${BACULA_MESSAGES_USER:-root@localhost} = all, !skipped, !info
 
   console = all, !skipped, !saved
   stdout = all, !skipped
