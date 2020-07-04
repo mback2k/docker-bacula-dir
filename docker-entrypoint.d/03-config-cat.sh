@@ -50,15 +50,6 @@ Job {
     RunsOnClient = no
     RunsWhen = Before
   }
-  # This deletes the copy of the catalog
-  RunScript {
-    Command = \"/etc/bacula/scripts/delete_catalog_backup\"
-    FailJobOnError = no
-    RunsOnSuccess = yes
-    RunsOnFailure = yes
-    RunsOnClient = no
-    RunsWhen = After
-  }
   Priority = 99 # run after other backups
 }
 
