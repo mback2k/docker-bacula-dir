@@ -31,10 +31,10 @@ Pool {
   Name = FilePool
   Pool Type = Backup
   Storage = bacula-sd
-  Maximum Volumes = 100
+  Maximum Volumes = 110
   Maximum Volume Bytes = 10 GB
   AutoPrune = yes
-  Volume Retention = 190 days
+  Volume Retention = 3 months
   Action On Purge = Truncate
   Recycle = yes
   Recycle Oldest Volume = yes

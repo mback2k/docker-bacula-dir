@@ -29,8 +29,8 @@ Client {
   FD Port = 9102
   Catalog = Catalog
   @/etc/bacula/bacula-dir-password
-  File Retention = 60 days
-  Job Retention = 6 months
+  File Retention = 3 months
+  Job Retention = 3 months
   AutoPrune = yes
 }
 
