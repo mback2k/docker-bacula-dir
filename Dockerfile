@@ -1,4 +1,4 @@
-FROM mback2k/ubuntu:rolling
+FROM ghcr.io/mback2k/docker-ubuntu/focal:latest
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
